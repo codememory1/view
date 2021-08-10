@@ -1,0 +1,7 @@
+{
+  "view": {
+    "configName": "view",
+    "pathWithTemplates": "/",
+    "engine": "Codememory\\Components\\View\\Engines\\BigEngine"
+  }
+}

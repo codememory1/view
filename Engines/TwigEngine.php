@@ -6,6 +6,7 @@ use Closure;
 use Codememory\Components\Caching\Cache;
 use Codememory\Components\Caching\Exceptions\ConfigPathNotExistException;
 use Codememory\Components\Markup\Types\YamlType;
+use Codememory\Support\Str;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -29,8 +30,12 @@ class TwigEngine extends EngineAbstract
     public function get(): Closure
     {
 
+        Str::replace($this->templatePath, '//', '/');
+
         return function () {
-            return $this->getTwig()->render($this->templatePath, $this->parameters);
+            $templateName = Str::trimToSymbol($this->templatePath, '/', false);
+
+            echo $this->getTwig()->render($templateName, $this->parameters);
         };
 
     }
