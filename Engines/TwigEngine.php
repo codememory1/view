@@ -76,6 +76,12 @@ class TwigEngine extends EngineAbstract
             );
 
             $this->twig = new Environment($filesystemLoader, $this->getOptionsForTwig());
+
+            if (null !== $this->utils->getTwigExpander()) {
+                $expanderNamespace = $this->utils->getTwigExpander();
+
+                new $expanderNamespace($this->twig);
+            }
         }
 
         return $this->twig;

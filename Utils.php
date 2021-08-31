@@ -2,6 +2,7 @@
 
 namespace Codememory\Components\View;
 
+use Codememory\Components\Caching\Exceptions\ConfigPathNotExistException;
 use Codememory\Components\Configuration\Config;
 use Codememory\Components\Configuration\Exceptions\ConfigNotFoundException;
 use Codememory\Components\Configuration\Interfaces\ConfigInterface;
@@ -36,6 +37,7 @@ class Utils
      * @throws IncorrectPathToEnviException
      * @throws ParsingErrorException
      * @throws VariableParsingErrorException
+     * @throws ConfigPathNotExistException
      */
     public function __construct(FileInterface $filesystem)
     {
@@ -89,6 +91,20 @@ class Utils
     {
 
         return $this->config->get('engine') ?? GlobalConfig::get('view.configName.engine');
+
+    }
+
+    /**
+     * =>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>
+     * Returns the namespace of the twig expander
+     * <=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=
+     *
+     * @return string|null
+     */
+    public function getTwigExpander(): ?string
+    {
+
+        return $this->config->get('twigExpander');
 
     }
 
