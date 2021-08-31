@@ -4,7 +4,6 @@ namespace Codememory\Components\View\Engines;
 
 use Closure;
 use Codememory\Components\Caching\Cache;
-use Codememory\Components\Caching\Exceptions\ConfigPathNotExistException;
 use Codememory\Components\Markup\Types\YamlType;
 use Codememory\Support\Str;
 use Twig\Environment;
@@ -12,6 +11,7 @@ use Twig\Loader\FilesystemLoader;
 
 /**
  * Class TwigEngine
+ *
  * @package Codememory\Components\View\Engines
  *
  * @author  Codememory
@@ -35,7 +35,7 @@ class TwigEngine extends EngineAbstract
         return function () {
             $templateName = Str::trimToSymbol($this->templatePath, '/', false);
 
-            echo $this->getTwig()->render($templateName, $this->parameters);
+            echo $this->getTwig()->render(sprintf('%s.html.twig', $templateName), $this->parameters);
         };
 
     }
@@ -46,7 +46,6 @@ class TwigEngine extends EngineAbstract
      * <=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=<=
      *
      * @return array
-     * @throws ConfigPathNotExistException
      */
     private function getOptionsForTwig(): array
     {
@@ -65,7 +64,6 @@ class TwigEngine extends EngineAbstract
 
     /**
      * @return Environment
-     * @throws ConfigPathNotExistException
      */
     private function getTwig(): Environment
     {
