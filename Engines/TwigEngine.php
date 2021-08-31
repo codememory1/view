@@ -35,6 +35,8 @@ class TwigEngine extends EngineAbstract
         return function () {
             $templateName = Str::trimToSymbol($this->templatePath, '/', false);
 
+            Str::replace($templateName, '.', '/');
+
             echo $this->getTwig()->render(sprintf('%s.html.twig', $templateName), $this->parameters);
         };
 
