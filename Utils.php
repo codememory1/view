@@ -4,6 +4,7 @@ namespace Codememory\Components\View;
 
 use Codememory\Components\Caching\Exceptions\ConfigPathNotExistException;
 use Codememory\Components\Configuration\Config;
+use Codememory\Components\Configuration\Configuration;
 use Codememory\Components\Configuration\Exceptions\ConfigNotFoundException;
 use Codememory\Components\Configuration\Interfaces\ConfigInterface;
 use Codememory\Components\Environment\Exceptions\EnvironmentVariableNotFoundException;
@@ -29,22 +30,11 @@ class Utils
 
     /**
      * Utils constructor.
-     *
-     * @param FileInterface $filesystem
-     *
-     * @throws ConfigNotFoundException
-     * @throws EnvironmentVariableNotFoundException
-     * @throws IncorrectPathToEnviException
-     * @throws ParsingErrorException
-     * @throws VariableParsingErrorException
-     * @throws ConfigPathNotExistException
      */
-    public function __construct(FileInterface $filesystem)
+    public function __construct()
     {
 
-        $config = new Config($filesystem);
-
-        $this->config = $config->open(GlobalConfig::get('view.configName'));
+        $this->config = Configuration::getInstance()->open(GlobalConfig::get('view.configName'));
 
     }
 

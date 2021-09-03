@@ -3,11 +3,6 @@
 namespace Codememory\Components\View;
 
 use Closure;
-use Codememory\Components\Configuration\Exceptions\ConfigNotFoundException;
-use Codememory\Components\Environment\Exceptions\EnvironmentVariableNotFoundException;
-use Codememory\Components\Environment\Exceptions\IncorrectPathToEnviException;
-use Codememory\Components\Environment\Exceptions\ParsingErrorException;
-use Codememory\Components\Environment\Exceptions\VariableParsingErrorException;
 use Codememory\Components\View\Exceptions\TemplateNameNotExistException;
 use Codememory\Components\View\Interfaces\ViewEngineInterface;
 use Codememory\Components\View\Interfaces\ViewInterface;
@@ -56,12 +51,6 @@ class View implements ViewInterface
      * View constructor.
      *
      * @param FileInterface $filesystem
-     *
-     * @throws ConfigNotFoundException
-     * @throws EnvironmentVariableNotFoundException
-     * @throws IncorrectPathToEnviException
-     * @throws ParsingErrorException
-     * @throws VariableParsingErrorException
      */
     public function __construct(FileInterface $filesystem)
     {
@@ -75,11 +64,6 @@ class View implements ViewInterface
 
     /**
      * @inheritDoc
-     * @throws ConfigNotFoundException
-     * @throws EnvironmentVariableNotFoundException
-     * @throws IncorrectPathToEnviException
-     * @throws ParsingErrorException
-     * @throws VariableParsingErrorException
      */
     public function render(string $templatePath, array $parameters = []): ViewInterface
     {
@@ -120,11 +104,6 @@ class View implements ViewInterface
 
     /**
      * @inheritDoc
-     * @throws ConfigNotFoundException
-     * @throws EnvironmentVariableNotFoundException
-     * @throws IncorrectPathToEnviException
-     * @throws ParsingErrorException
-     * @throws VariableParsingErrorException
      */
     public function saveByName(string $name): ViewInterface
     {
@@ -137,11 +116,6 @@ class View implements ViewInterface
 
     /**
      * @inheritDoc
-     * @throws ConfigNotFoundException
-     * @throws EnvironmentVariableNotFoundException
-     * @throws IncorrectPathToEnviException
-     * @throws ParsingErrorException
-     * @throws VariableParsingErrorException
      */
     public function getTemplateClosure(): Closure
     {
@@ -181,11 +155,7 @@ class View implements ViewInterface
     }
 
     /**
-     * @throws ConfigNotFoundException
-     * @throws EnvironmentVariableNotFoundException
-     * @throws VariableParsingErrorException
-     * @throws IncorrectPathToEnviException
-     * @throws ParsingErrorException
+     * @return void
      */
     public function makeOutput(): void
     {
@@ -196,17 +166,12 @@ class View implements ViewInterface
 
     /**
      * @return Utils
-     * @throws ConfigNotFoundException
-     * @throws EnvironmentVariableNotFoundException
-     * @throws IncorrectPathToEnviException
-     * @throws ParsingErrorException
-     * @throws VariableParsingErrorException
      */
     private function getUtils(): Utils
     {
 
         if (!$this->utils instanceof Utils) {
-            $this->utils = new Utils($this->filesystem);
+            $this->utils = new Utils();
         }
 
         return $this->utils;
