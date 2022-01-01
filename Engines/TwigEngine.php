@@ -37,7 +37,7 @@ class TwigEngine extends EngineAbstract
 
             Str::replace($templateName, '.', '/');
 
-            echo $this->getTwig()->render(sprintf('%s.html.twig', $templateName), $this->parameters);
+            return $this->getTwig()->render(sprintf('%s.html.twig', $templateName), $this->parameters);
         };
 
     }

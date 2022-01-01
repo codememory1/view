@@ -160,7 +160,17 @@ class View implements ViewInterface
     public function makeOutput(): void
     {
 
-        $this->getTemplateClosure()->__invoke();
+        echo $this->getTemplateClosure()->__invoke();
+
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getOutput(): ?string
+    {
+
+        return $this->getTemplateClosure()->__invoke();
 
     }
 

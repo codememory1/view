@@ -2,6 +2,6 @@
   "view": {
     "configName": "view",
     "pathWithTemplates": "/",
-    "engine": "Codememory\\Components\\View\\Engines\\BigEngine"
+    "engine": "Codememory\\Components\\View\\Engines\\TwigEngine"
   }
 }
